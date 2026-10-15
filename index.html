@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>K.C. Long</title>
+  <meta name="description" content="K.C. Long: cars, Instagram, YouTube, Facebook and TikTok, all in one place.">
+  <meta name="theme-color" content="#5cb8ff">
+  <meta property="og:title" content="K.C. Long">
+  <meta property="og:description" content="Cars, Instagram, YouTube, Facebook and TikTok, all in one place.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo-wrap">
+    <button class="logo-btn" id="logoBtn" type="button" aria-label="Drop more Rockys">
+      <img class="logo" src="assets/rocky-logo.svg" width="220" height="269" alt="Rocky logo" draggable="false">
+    </button>
+    <div class="hint" id="hint" aria-hidden="true">
+      <span id="hintText">Tap Rocky<br>for more</span>
+      <svg viewBox="0 0 60 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 6 C 10 26, 26 36, 52 34"/>
+        <path d="M42 26 L 53 34 L 42 41"/>
+      </svg>
+    </div>
+  </div>
+  <div class="who">
+    <h1>K.C. Long</h1>
+    <p class="tag">Find me everywhere</p>
+  </div>
+  <nav>
+    <a href="https://skylinedecatur.com/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 15v-3l2-1 2.5-4h8L18 11l3 1v3h-2"/><path d="M9 15h6"/><path d="M3 15h2"/><circle cx="7" cy="15.5" r="2"/><circle cx="17" cy="15.5" r="2"/></svg>
+      <span>CARS</span><b class="arrow">→</b></a>
+    <a href="tel:+16788507599">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+      <span class="two"><span>Call</span><small>678-850-7599</small></span><b class="arrow">→</b></a>
+    <a href="mailto:Kclong@skylinedecatur.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      <span class="two"><span>Email</span><small>Kclong@<wbr>skylinedecatur.com</small></span><b class="arrow">→</b></a>
+    <a href="https://instagram.com/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      <span>Instagram</span><b class="arrow">→</b></a>
+    <a href="https://youtube.com/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>
+      <span>YouTube</span><b class="arrow">→</b></a>
+    <a href="https://facebook.com/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M15 8h-1.5A1.5 1.5 0 0 0 12 9.5V21M9.5 13H15"/></svg>
+      <span>Facebook</span><b class="arrow">→</b></a>
+    <a href="https://tiktok.com/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.8 2.3 4.5 5 4.8"/></svg>
+      <span>TikTok</span><b class="arrow">→</b></a>
+  </nav>
+</div>
+
+<div id="rain" aria-hidden="true"></div>
+
+<div class="boom" id="boom" aria-hidden="true"></div>
+<img class="logo-blast" id="logoBlast" alt="" aria-hidden="true" draggable="false">
+<div class="heli-rig" id="heliRig" aria-hidden="true" hidden>
+  <div class="carrier" id="carrier">
+    <span class="cable" id="cable"></span>
+    <img class="carry-logo" id="carryLogo" alt="" draggable="false">
+  </div>
+  <svg class="heli" id="heli" viewBox="0 0 420 170" aria-hidden="true">
+    <ellipse cx="215" cy="16" rx="192" ry="4" fill="#111" opacity=".16"/>
+    <rect class="rotor" x="28" y="13" width="374" height="6" rx="3" fill="#111"/>
+    <rect x="211" y="16" width="8" height="20" fill="#111"/>
+    <rect x="199" y="13" width="32" height="8" rx="3" fill="#111"/>
+    <path d="M158 49 C163 35 174 30 190 30 L252 30 C264 30 272 37 276 49 Z" fill="#111"/>
+    <path d="M128 52 L42 65 L38 81 L128 92 Z" fill="#111"/>
+    <path d="M62 70 L30 22 L46 17 L80 67 Z" fill="#111"/>
+    <path d="M12 86 L70 81 L73 88 L15 94 Z" fill="#111"/>
+    <g class="tail-rotor">
+      <circle cx="36" cy="32" r="17" fill="#111" opacity=".16"/>
+      <rect x="19" y="30" width="34" height="4" rx="2" fill="#111"/>
+      <rect x="34" y="15" width="4" height="34" rx="2" fill="#111"/>
+    </g>
+    <path d="M118 50 L300 44 C336 44 362 58 373 80 C379 94 369 107 350 109 L176 113 C150 113 131 105 121 92 Z" fill="#111"/>
+    <path d="M320 54 L338 54 C352 60 362 70 367 81 L323 81 Z" fill="#fff"/>
+    <path d="M292 54 L313 54 L316 81 L290 81 Z" fill="#fff"/>
+    <rect x="194" y="56" width="80" height="48" rx="4" fill="none" stroke="#fff" stroke-width="3"/>
+    <rect x="204" y="64" width="24" height="16" rx="3" fill="#fff"/>
+    <rect x="240" y="64" width="24" height="16" rx="3" fill="#fff"/>
+    <rect x="140" y="62" width="40" height="10" rx="3" fill="#fff"/>
+    <circle cx="264" cy="40" r="4" fill="#fff"/>
+    <rect x="168" y="37" width="20" height="5" rx="2" fill="#fff"/>
+    <path d="M74 88 L76 104" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="76" cy="108" r="6" fill="#111" stroke="#fff" stroke-width="2"/>
+    <path d="M302 107 L306 124" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="306" cy="132" r="10" fill="#111" stroke="#fff" stroke-width="3"/>
+    <circle cx="306" cy="132" r="3.5" fill="#fff"/>
+    <circle cx="230" cy="114" r="4" fill="#111" stroke="#fff" stroke-width="2"/>
+  </svg>
+</div>
+<div class="flash" id="flash" aria-hidden="true"></div>
+
+<button class="rope" id="rope" type="button" aria-label="Flush the Rockys">
+  <span class="cord"></span>
+  <span class="pull">Flush</span>
+</button>
+</body>
+</html>
