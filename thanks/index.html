@@ -25,10 +25,8 @@
 }
 html, body { height: 100%; margin: 0; overflow: hidden; overscroll-behavior: none; }
 body { background: var(--bg); color: var(--ink); font-family: var(--font-body); position: relative; }
-#rain, #confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-#rain { z-index: 1; }
+#confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 #confetti { z-index: 1; }
-#rain img { position: absolute; left: 0; top: 0; will-change: transform; user-select: none; -webkit-user-select: none; }
 #confetti i { position: absolute; left: 0; top: 0; display: block; border: 1.5px solid var(--ink); will-change: transform; }
 .stage {
   position: absolute; inset: 0; z-index: 2;
@@ -44,6 +42,14 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
 .hero { position: relative; width: min(250px, 58vw, 34vh); aspect-ratio: 1; display: grid; place-items: center; }
 .burst { position: absolute; inset: -38%; width: 176%; height: 176%; animation: turn 40s linear infinite; -webkit-mask-image: radial-gradient(circle, #000 30%, transparent 68%); mask-image: radial-gradient(circle, #000 30%, transparent 68%); }
 .spin { position: relative; width: 86%; height: auto; animation: pop .7s cubic-bezier(.2, 1.6, .4, 1) both; filter: drop-shadow(4px 5px 0 rgba(17, 17, 17, .35)); }
+.maraca { position: absolute; bottom: 6%; width: 25%; height: auto; overflow: visible; z-index: 1; filter: drop-shadow(3px 4px 0 rgba(17, 17, 17, .35)); animation: pop .7s .15s cubic-bezier(.2, 1.6, .4, 1) both; }
+.maraca.left { left: -6%; rotate: -28deg; }
+.maraca.right { right: -6%; rotate: 28deg; scale: -1 1; }
+.maraca .shake { transform-box: view-box; transform-origin: 35px 140px; animation: shake .34s ease-in-out infinite alternate; }
+.maraca.right .shake { animation-delay: -.17s; }
+.maraca .lines { animation: flick .34s steps(2) infinite; }
+@keyframes shake { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+@keyframes flick { 50% { opacity: 0; } }
 @keyframes turn { to { transform: rotate(-360deg); } }
 @keyframes pop { from { scale: .2; } to { scale: 1; } }
 h1 {
@@ -72,14 +78,35 @@ h1 {
   </style>
 </head>
 <body>
-<div id="rain" aria-hidden="true"></div>
 <main class="stage">
   <div class="party">
     <div class="hero">
       <svg class="burst" viewBox="-100 -100 200 200" aria-hidden="true">
         <g id="rays"></g>
       </svg>
-      <img class="spin" src="../assets/roscoe-head.svg" alt="Roscoe" draggable="false">
+      <img class="spin" src="../assets/roscoe-head.svg" alt="Roscoe shaking maracas" draggable="false">
+      <svg class="maraca left" viewBox="0 0 70 150" aria-hidden="true">
+        <g class="shake">
+          <rect x="28" y="74" width="14" height="66" rx="7" fill="#111" stroke="#fff" stroke-width="4"/>
+          <rect x="24" y="132" width="22" height="12" rx="6" fill="#111" stroke="#fff" stroke-width="4"/>
+          <ellipse cx="35" cy="44" rx="29" ry="37" fill="#111" stroke="#fff" stroke-width="5"/>
+          <path d="M8 44 L15 36 L22 44 L29 36 L35 44 L41 36 L48 44 L55 36 L62 44" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="24" cy="22" r="3.5" fill="#fff"/><circle cx="38" cy="18" r="3.5" fill="#fff"/><circle cx="48" cy="27" r="3" fill="#fff"/>
+          <circle cx="22" cy="62" r="3" fill="#fff"/><circle cx="35" cy="68" r="3.5" fill="#fff"/><circle cx="48" cy="61" r="3" fill="#fff"/>
+          <path d="M60 8 q6 -6 10 2 M66 20 q6 -2 6 6" class="lines" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <svg class="maraca right" viewBox="0 0 70 150" aria-hidden="true">
+        <g class="shake">
+          <rect x="28" y="74" width="14" height="66" rx="7" fill="#111" stroke="#fff" stroke-width="4"/>
+          <rect x="24" y="132" width="22" height="12" rx="6" fill="#111" stroke="#fff" stroke-width="4"/>
+          <ellipse cx="35" cy="44" rx="29" ry="37" fill="#111" stroke="#fff" stroke-width="5"/>
+          <path d="M8 44 L15 36 L22 44 L29 36 L35 44 L41 36 L48 44 L55 36 L62 44" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="24" cy="22" r="3.5" fill="#fff"/><circle cx="38" cy="18" r="3.5" fill="#fff"/><circle cx="48" cy="27" r="3" fill="#fff"/>
+          <circle cx="22" cy="62" r="3" fill="#fff"/><circle cx="35" cy="68" r="3.5" fill="#fff"/><circle cx="48" cy="61" r="3" fill="#fff"/>
+          <path d="M60 8 q6 -6 10 2 M66 20 q6 -2 6 6" class="lines" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
     </div>
     <h1>Talk to you soon!</h1>
     <p class="note">Thanks for reaching out. Your message is in, and K.C. will get back to you shortly.</p>
@@ -89,12 +116,6 @@ h1 {
 <div id="confetti" aria-hidden="true"></div>
 <script>
 (function () {
-  var PIECES = [
-    { src: "../assets/roscoe-head.svg",  aspect: 574 / 684, scale: 1,    weight: 0.5 },
-    { src: "../assets/car.svg",   aspect: 64 / 120,  scale: 1.1,  weight: 0.17 },
-    { src: "../assets/truck.svg", aspect: 66 / 132,  scale: 1.15, weight: 0.17 },
-    { src: "../assets/key.svg",   aspect: 290 / 280, scale: 0.8,  weight: 0.16 }
-  ];
   var COLORS = ["#ffffff", "#111111"];
 
   // starburst rays behind Roscoe
@@ -106,35 +127,10 @@ h1 {
   }
   rays.innerHTML = html;
 
-  var rain = document.getElementById("rain"), conf = document.getElementById("confetti");
+  var conf = document.getElementById("confetti");
   function W() { return document.body.clientWidth || window.innerWidth; }
   function H() { return document.body.clientHeight || window.innerHeight; }
-  function pick() {
-    var x = Math.random(), acc = 0;
-    for (var i = 0; i < PIECES.length; i++) { acc += PIECES[i].weight; if (x < acc) return PIECES[i]; }
-    return PIECES[0];
-  }
-
-  var drops = [], bits = [];
-  function resetDrop(d, first) {
-    var w = W(), h = H();
-    var s = Math.max(0.6, Math.min(1, w / 760));
-    d.size = (40 + Math.random() * 56) * s * d.kind.scale;
-    d.el.style.width = d.size + "px";
-    d.x = Math.random() * w;
-    d.y = first ? Math.random() * h - h : -d.size - Math.random() * 120;
-    d.vy = 1.6 + Math.random() * 2.6;
-    d.vx = (Math.random() - 0.5) * 0.6;
-    d.a = Math.random() * 360;
-    d.va = (Math.random() - 0.5) * 3;
-  }
-  function addDrop(first) {
-    var kind = pick(), img = new Image();
-    img.src = kind.src; img.alt = ""; img.draggable = false;
-    rain.appendChild(img);
-    var d = { el: img, kind: kind };
-    resetDrop(d, first); drops.push(d);
-  }
+  var bits = [];
   function resetBit(b, burst) {
     var w = W(), h = H();
     if (burst) {
@@ -156,13 +152,12 @@ h1 {
     resetBit(b, burst); bits.push(b);
   }
 
-  function counts() { var w = W(); return { drops: Math.round(Math.min(30, Math.max(12, w / 40))), bits: Math.round(Math.min(26, Math.max(10, w / 45))) }; }
+  function counts() { var w = W(); return { bits: Math.round(Math.min(48, Math.max(22, w / 30))) }; }
   function start() {
     if (W() < 100 || H() < 100) return false;
     var c = counts(), i;
-    for (i = 0; i < c.drops; i++) addDrop(true);
     for (i = 0; i < c.bits; i++) addBit(false);
-    for (i = 0; i < 36; i++) addBit(true);
+    for (i = 0; i < 50; i++) addBit(true);
     return true;
   }
   if (!start()) { var tries = setInterval(function () { if (start()) clearInterval(tries); }, 200); }
@@ -171,13 +166,6 @@ h1 {
   function tick(now) {
     var dt = Math.min(2.5, (now - last) / 16.67); last = now; t += dt;
     var w = W(), h = H(), i;
-    for (i = 0; i < drops.length; i++) {
-      var d = drops[i];
-      d.y += d.vy * dt; d.x += d.vx * dt; d.a += d.va * dt;
-      if (d.y - d.size > h) resetDrop(d, false);
-      if (d.x < -d.size) d.x = w + d.size * 0.5; else if (d.x > w + d.size) d.x = -d.size * 0.5;
-      d.el.style.transform = "translate(" + (d.x - d.size / 2) + "px," + (d.y - d.size * d.kind.aspect / 2) + "px) rotate(" + d.a + "deg)";
-    }
     for (i = bits.length - 1; i >= 0; i--) {
       var b = bits[i];
       if (b.burst) { b.vy += 0.28 * dt; b.vx *= Math.pow(0.985, dt); if (b.vy > 4) b.vy = 4; }

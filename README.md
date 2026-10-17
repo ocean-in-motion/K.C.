@@ -38,7 +38,7 @@ No build step and no dependencies. The only outside request is the Google Fonts 
 
 **Contact form:** the "Need a quick response?" form at the bottom sends through [Web3Forms](https://web3forms.com). Messages go to the email address the access key was created with; the key is the `access_key` field in the form. Name and phone are required, email and the message are optional. After a successful send, visitors land on the thank-you page at `/thanks`; if sending fails, they see an error with K.C.'s phone number and stay on the page. Clicking into the form drains the pile so nothing covers the fields. Change the email subject or sender name with the `subject` and `from_name` fields.
 
-**Thank-you page:** `thanks/index.html` (address: `/thanks`) has Roscoe, the white starburst, confetti and a constant rain of Roscoe heads, cars, trucks and key fobs. Edit the headline and message in its `<main>` section. It's set to `noindex` so search engines skip it.
+**Thank-you page:** `thanks/index.html` (address: `/thanks`) has Roscoe shaking a pair of maracas (drawn inline, the two `<svg class="maraca">` blocks), the white starburst, and black-and-white confetti that bursts out on arrival and keeps falling. Edit the headline and message in its `<main>` section. It's set to `noindex` so search engines skip it.
 
 **Name and bio:** in `index.html`, edit the `<h1>` and the bio line under it (`<p class="tag">`). Update `<title>` and the `description` and `og:` tags in the `<head>` to match.
 
